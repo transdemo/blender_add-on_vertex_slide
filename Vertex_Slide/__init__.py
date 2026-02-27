@@ -13,7 +13,7 @@ import bpy
 import bmesh
 from bpy.props import FloatVectorProperty, FloatProperty
 
-# scene 속성 보장
+# ensure scene property
 def ensure_scene_props():
     if not hasattr(bpy.types.Scene, "marked_edge_vector"):
         bpy.types.Scene.marked_edge_vector = FloatVectorProperty(
@@ -57,7 +57,7 @@ class MESH_OT_slide_vertices(bpy.types.Operator):
     distance: FloatProperty(name="Distance", default=0.0)
 
     def invoke(self, context, event):
-        self.distance = 0.0  # 항상 기본값으로 초기화
+        self.distance = 0.0  # always start at 0 for interactive sliding
         return self.execute(context)
 
     def execute(self, context):
